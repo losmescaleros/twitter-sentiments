@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Twitter Sentiments
+  h4 Love
+  p#love
+  h4 Hate
+  p#hate
+  h4 Total Tweets
+  p#total
+  hr
+  ul#tweets
+
+block scripts
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.socket.io.js")
