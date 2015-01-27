@@ -11,7 +11,7 @@ The goal is to exploit a third-party web service and perform analytics on
 the data stream. The Twitter streaming API is used to perform a basic
 sentiment analysis on a stream of tweets. The project uses various other
 projects including express, socket.io, Jade, and jQuery. In addition, the 
-npm package [node-twitter | https://github.com/desmondmorris/node-twitter]
+npm package [node-twitter](https://github.com/desmondmorris/node-twitter)
 has also been incorporated for easily connecting to the Twitter stream. 
 
 ## Sentiment Analysis
