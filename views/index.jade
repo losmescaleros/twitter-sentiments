@@ -3,9 +3,13 @@ extends layout
 block content
   h1 Twitter Sentiments
   h4 Love
-  p#love
+  div#love-progress(class='progress' style='width:50%')
+    div(class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%, min-width: 4em')
+      span#love
   h4 Hate
-  p#hate
+  div#hate-progress(class='progress' style='width:50%')
+    div(class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%, min-width: 4em')
+      span#hate
   h4 Total Tweets
   p#total
   hr

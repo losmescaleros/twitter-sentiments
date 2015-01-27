@@ -26,30 +26,29 @@ var sio = require('socket.io').listen(server);
 var twitter = require('twitter');
 
 var t = new twitter(credentials);
-console.log("Connecting to Twitter stream...");
 
 var keywords = ['love', 'hate'];
 var loveCount = 0;
 var hateCount = 0;
 var total = 0;
 
-sio.sockets.on('connection', function(socket){
-  console.log('Web client connected');
-  t.stream('statuses/filter', {track: keywords.join(',')}, function(stream){
+t.stream('statuses/filter', {track: keywords.join(',')}, function(stream){
     stream.on('data', function(tweet){
       if(tweet.text !== undefined){
         var text = tweet.text.toLowerCase();
         var shouldPrint = false;
+        
         if(text.indexOf(keywords[0]) > -1){
-          loveCount++;      
+          loveCount++;
+	  total++;      
           shouldPrint = true;
         } 
         if(text.indexOf(keywords[1]) > -1){
           hateCount++;
+	  total++;
           shouldPrint = true;
         }
         if(shouldPrint){
-          total++;
           var data = {
             tweet: tweet.text,
             tweeter: tweet.user.screen_name,
@@ -57,7 +56,7 @@ sio.sockets.on('connection', function(socket){
             hate: Math.round(100 * hateCount / total),
             total: total
           };
-          socket.volatile.emit('tweet', data);
+          sio.sockets.emit('tweet', data);
           console.log(tweet.text);
         }
       }
@@ -68,6 +67,11 @@ sio.sockets.on('connection', function(socket){
     });
   });
   
+
+sio.sockets.on('connection', function(socket){
+  console.log('Web client connected');
+  console.log("Connecting to Twitter stream...");
+
   socket.on('disconnect', function(){
     console.log('Web client disconnected');
   });
