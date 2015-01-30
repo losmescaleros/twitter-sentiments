@@ -19,7 +19,11 @@ projects including [Express.js][express], [socket.io][socket io], [Jade][jade],
 and [jQuery][jquery]. In addition, the Node.js package [Node-Twitter]
 [node-twitter] has also been incorporated for easily connecting to the Twitter
 stream. Bootstrap and jQuery JavaScript and CSS dependencies should be put in
-```pulic/javascripts``` and ```public/stylesheets``` respectively.
+```pulic/javascripts``` and ```public/stylesheets``` respectively. You can put
+these files into their respective folders, or you can use symbolic links. 
+However, the application expects ```jquery.min.js``` and ```bootstrap.min.js```
+to be in the ```javascripts``` folder, as well as ```bootstrap.min.css``` and
+```bootstrap-theme.min.css``` to be in the ```stylesheets``` folder. 
 
 ## Sentiment Analysis
 
